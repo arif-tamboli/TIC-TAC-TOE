@@ -18,13 +18,4 @@ jobs:
       - uses: 'sonarsource/sonarqube-quality-gate-action@master timeout-minutes:5'
         env:
           SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'
-deploy:
-  needs: build-analyze-scan
-  runs-on: self-hosted
-  steps:
-    - name: Pull the Docker image
-      run: 'docker pull arif351/tic-tac-toe:latest'
-    - name: Trivy image scan
-      run: 'trivy image arif351/tic-tac-toe:latest'
-    - name: Run the container
-      run: 'docker run -d --name ticgame -p 3000:3000 arif351/tic-tac-toe:latest'
+
