@@ -33,3 +33,8 @@ jobs:
            docker tag tic-tac-toe arif351/tic-tac-toe:latest
            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
            docker push arif351/tic-tac-toe:latest
+                 
+      - name: Trivy Image scan
+        run: trivy image scan arif351/tic-tac-toe:latest > trivyimage.txt
+      
+    
